@@ -8,7 +8,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Header from "./Header";
 import GoogleMaps from "./GoogleMaps";
 
-const SearchBar = ({ units, setUnits, search, invalid }) => {
+const SearchBar = ({ googleKey, units, setUnits, search, invalid }) => {
   const [city, setCity] = useState("");
 
   const handleUnitsChange = (event) => {
@@ -28,7 +28,7 @@ const SearchBar = ({ units, setUnits, search, invalid }) => {
       <Header />
       <Grid container spacing={2} alignItems="flex-end">
         <Grid>
-          <GoogleMaps setCity={setCity}/>
+          <GoogleMaps googleKey={googleKey} setCity={setCity} search={search}/>
         </Grid>
         <Grid item>
           <TextField select value={units} onChange={handleUnitsChange}>

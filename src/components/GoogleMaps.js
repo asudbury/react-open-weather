@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GoogleMaps({ setCity }) {
+export default function GoogleMaps({ googleKey, setCity, search }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState("");
@@ -39,7 +39,9 @@ export default function GoogleMaps({ setCity }) {
   if (typeof window !== "undefined" && !loaded.current) {
     if (!document.querySelector("#google-maps")) {
       loadScript(
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyBQJ5nuBEu18372atNGIXPVPEMmske2CQM&libraries=places",
+        "https://maps.googleapis.com/maps/api/js?key=" +
+          googleKey +
+          "&libraries=places",
         document.querySelector("head"),
         "google-maps"
       );
@@ -107,18 +109,24 @@ export default function GoogleMaps({ setCity }) {
       filterSelectedOptions
       value={value}
       onChange={(event, newValue) => {
+
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
+
+        if (newValue != null) {
+          search(newValue.description);
+        }
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue);
         setCity(newInputValue);
       }}
       renderInput={(params) => (
+
         <TextField
           {...params}
           label="Enter City..."
-          variant="outlined" 
+          variant="outlined"
           fullWidth
         />
       )}

@@ -13,8 +13,11 @@ const Weather = ({ apiKey }) => {
   const [today, setToday] = useState(null);
   const [forecast, setForecast] = useState(null);
 
+  /// google key is protected in the google console to asudbury websites
+  const [googleKey] = useState("AIzaSyBQJ5nuBEu18372atNGIXPVPEMmske2CQM");
+
   const search = (citySearch) => {
-    if (citySearch.length > 2) {
+    if (citySearch && citySearch.length > 2) {
       const weatherService = new WeatherService(units, apiKey, "en");
 
       const params = { q: citySearch, units: units };
@@ -43,7 +46,12 @@ const Weather = ({ apiKey }) => {
 
   return (
     <div>
-      <SearchBar units={units} setUnits={setUnits} search={search}></SearchBar>
+      <SearchBar
+        units={units}
+        setUnits={setUnits}
+        search={search}
+        googleKey={googleKey}
+      ></SearchBar>
 
       {error401 && <ErrorMessages />}
 
