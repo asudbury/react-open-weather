@@ -58,6 +58,12 @@ export default function GoogleMaps({ googleKey, setCity, search }) {
     []
   );
 
+  const onKeyPress = (evt) => {
+    if (evt.key === "Enter") {
+      search(value);
+    }
+  };
+
   React.useEffect(() => {
     let active = true;
 
@@ -109,7 +115,6 @@ export default function GoogleMaps({ googleKey, setCity, search }) {
       filterSelectedOptions
       value={value}
       onChange={(event, newValue) => {
-
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
 
@@ -122,21 +127,25 @@ export default function GoogleMaps({ googleKey, setCity, search }) {
         setCity(newInputValue);
       }}
       renderInput={(params) => (
-
         <TextField
           {...params}
+          onKeyPress={onKeyPress}
           label="Enter City..."
           variant="outlined"
           fullWidth
         />
       )}
       renderOption={(option) => {
-        const matches =
-          option.structured_formatting.main_text_matched_substrings;
-        const parts = parse(
-          option.structured_formatting.main_text,
-          matches.map((match) => [match.offset, match.offset + match.length])
-        );
+        let parts = null;
+
+        if (option != null) {
+          const matches =
+            option.structured_formatting.main_text_matched_substrings;
+            parts = parse(
+            option.structured_formatting.main_text,
+            matches.map((match) => [match.offset, match.offset + match.length])
+          );
+        }
 
         return (
           <Grid container alignItems="center">
