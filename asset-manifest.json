@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.75559be9.chunk.css",
-    "main.js": "/static/js/main.d496f3c3.chunk.js",
-    "main.js.map": "/static/js/main.d496f3c3.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.4d489b75.js",
-    "runtime-main.js.map": "/static/js/runtime-main.4d489b75.js.map",
-    "static/js/2.97d45432.chunk.js": "/static/js/2.97d45432.chunk.js",
-    "static/js/2.97d45432.chunk.js.map": "/static/js/2.97d45432.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.780ae6bb89bb4293ad4804f912f89e1f.js": "/precache-manifest.780ae6bb89bb4293ad4804f912f89e1f.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.75559be9.chunk.css.map": "/static/css/main.75559be9.chunk.css.map",
-    "static/js/2.97d45432.chunk.js.LICENSE.txt": "/static/js/2.97d45432.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/background.1bdecd60.jpg"
+    "main.css": "/react-open-weather/static/css/main.3ce9b47a.chunk.css",
+    "main.js": "/react-open-weather/static/js/main.ca3cbc45.chunk.js",
+    "main.js.map": "/react-open-weather/static/js/main.ca3cbc45.chunk.js.map",
+    "runtime-main.js": "/react-open-weather/static/js/runtime-main.7b28ead7.js",
+    "runtime-main.js.map": "/react-open-weather/static/js/runtime-main.7b28ead7.js.map",
+    "static/js/2.97d45432.chunk.js": "/react-open-weather/static/js/2.97d45432.chunk.js",
+    "static/js/2.97d45432.chunk.js.map": "/react-open-weather/static/js/2.97d45432.chunk.js.map",
+    "index.html": "/react-open-weather/index.html",
+    "precache-manifest.b0428b9d987a949ef35dbfff6af01c52.js": "/react-open-weather/precache-manifest.b0428b9d987a949ef35dbfff6af01c52.js",
+    "service-worker.js": "/react-open-weather/service-worker.js",
+    "static/css/main.3ce9b47a.chunk.css.map": "/react-open-weather/static/css/main.3ce9b47a.chunk.css.map",
+    "static/js/2.97d45432.chunk.js.LICENSE.txt": "/react-open-weather/static/js/2.97d45432.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/react-open-weather/static/media/background.1bdecd60.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.4d489b75.js",
+    "static/js/runtime-main.7b28ead7.js",
     "static/js/2.97d45432.chunk.js",
-    "static/css/main.75559be9.chunk.css",
-    "static/js/main.d496f3c3.chunk.js"
+    "static/css/main.3ce9b47a.chunk.css",
+    "static/js/main.ca3cbc45.chunk.js"
   ]
 }
