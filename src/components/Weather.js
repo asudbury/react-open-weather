@@ -24,13 +24,17 @@ const Weather = ({ apiKey }) => {
     }
   };
 
+  const coordinatesSearchSuccess = (position) => {
+    const params = { lat: position.coords.latitude, lon: position.coords.longitude, units: units };
+    doSearch(params);
+  }
+
+  function coordinatesSearchError(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+  
   const coordinatesSearch = () => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-
-      const params = { lat: position.coords.latitude, lon: position.coords.longitude, units: units };
-
-      doSearch(params);
-    });
+    navigator.geolocation.getCurrentPosition(coordinatesSearchSuccess, coordinatesSearchError);
   };
 
   const doSearch = (params) => {
