@@ -25,9 +25,11 @@ const City = ({ city }) => {
         </Grid>
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item>
-            <Typography variant="h6" noWrap>
-              population {Number(city.population).toLocaleString()}
-            </Typography>
+            {city.population !== undefined && (
+              <Typography variant="h6" noWrap>
+                population {Number(city.population).toLocaleString()}
+              </Typography>
+            )}
           </Grid>
           <Grid item>
             <Button

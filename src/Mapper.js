@@ -1,5 +1,6 @@
 import {
   utilsGetIcon,
+  utilsGetDayOfWeek,
   utilsGetFormattedTime,
   utilsCapitalizeFirstLetter,
   utilsGetUnitsIndicator,
@@ -13,7 +14,7 @@ export function map(forecastData, todayData, unit) {
     "https://www.google.co.uk/maps/place/" + forecastData.city.name;
   mapped.city.wikiUrl =
     "https://en.wikipedia.org/wiki/" + forecastData.city.name;
-  mapped.today = {
+  mapped.now = {
     description: utilsCapitalizeFirstLetter(todayData.weather[0].description),
     icon: utilsGetIcon(todayData.weather[0].icon),
     temperature: {
@@ -29,7 +30,29 @@ export function map(forecastData, todayData, unit) {
     unit: unit,
   };
 
-  mapped.forecasts = forecastData.list;
+  mapped.forecasts = mapForecasts(forecastData.list);
 
   return mapped;
+}
+
+function mapForecasts(forecastData) {
+  var forecasts = [];
+
+  var arrayLength = forecastData.length;
+
+  for (var i = 0; i < arrayLength; i++) {
+    var forecast = {};
+
+    forecast.day = utilsGetDayOfWeek(forecastData[i].dt);
+    forecast.time = utilsGetFormattedTime(forecastData[i].dt);
+    forecast.temperature = forecastData[i].main.temp.toFixed(0);
+    forecast.description = utilsCapitalizeFirstLetter(
+      forecastData[i].weather[0].description
+    );
+    forecast.icon = utilsGetIcon(forecastData[i].weather[0].icon);
+
+    forecasts.push(forecast);
+  }
+
+  return forecasts;
 }

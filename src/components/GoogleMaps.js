@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GoogleMaps({ googleKey, setCity, search }) {
+export default function GoogleMaps({ googleKey, setCity, citySearch }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
   const [inputValue, setInputValue] = React.useState("");
@@ -60,7 +60,7 @@ export default function GoogleMaps({ googleKey, setCity, search }) {
 
   const onKeyPress = (evt) => {
     if (evt.key === "Enter") {
-      search(value);
+      citySearch(value);
     }
   };
 
@@ -119,7 +119,7 @@ export default function GoogleMaps({ googleKey, setCity, search }) {
         setValue(newValue);
 
         if (newValue != null) {
-          search(newValue.description);
+          citySearch(newValue.description);
         }
       }}
       onInputChange={(event, newInputValue) => {

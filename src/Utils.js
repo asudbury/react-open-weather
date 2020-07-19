@@ -1,5 +1,21 @@
+
 export function utilsGetIcon(icon) {
   return `http://openweathermap.org/img/wn/${icon}@2x.png `;
+}
+
+export function utilsGetDayOfWeek(unixTimeStamp) {
+
+  const date = new Date(unixTimeStamp * 1000);
+
+  var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  
+  var day = date.getDay();
+
+  if (day === new Date().getDay()) {
+    return "Today";
+  }
+
+  return weekdays[day];
 }
 
 export function utilsGetFormattedTime(unixTimeStamp) {
