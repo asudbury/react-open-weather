@@ -16,8 +16,7 @@ const SearchBar = ({
   units,
   setUnits,
   citySearch,
-  coordinatesSearch,
-  invalid,
+  coordinatesSearch
 }) => {
   const [city, setCity] = useState("");
 
@@ -38,19 +37,21 @@ const SearchBar = ({
       <CardContent>
         <Header />
         <Grid container spacing={2}>
-          <Grid>
-            <GoogleMaps
-              googleKey={googleKey}
-              setCity={setCity}
-              citySearch={citySearch}
-            />
-            <Button
-              variant="outlined"
-              style={{ background: "transparent" }}
-              onClick={coordinatesSearch}
-            >
-              Use my current location
-            </Button>
+          <Grid item>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <GoogleMaps
+                  googleKey={googleKey}
+                  setCity={setCity}
+                  citySearch={citySearch}
+                />
+              </Grid>
+              <Grid item>
+                <Button variant="outlined" onClick={coordinatesSearch}>
+                  Use my current location
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item>
             <TextField select value={units} onChange={handleUnitsChange}>

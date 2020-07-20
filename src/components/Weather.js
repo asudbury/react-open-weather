@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import SearchBar from "./SearchBar";
-import ErrorMessages from "./ErrorMessages";
+import ErrorMessage from "./ErrorMessage";
 import City from "./City";
 import Now from "./Now";
 import Forecasts from "./Forecasts";
 import WeatherService from "../WeatherService";
 
 const Weather = ({ apiKey }) => {
-  const [error401, setError401] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [units, setUnits] = useState("metric");
   const [city, setCity] = useState(null);
   const [now, setNow] = useState(null);
   const [forecasts, setForecasts] = useState(null);
-  
+
   /// google key is protected in the google console to asudbury websites
   const [googleKey] = useState("AIzaSyBQJ5nuBEu18372atNGIXPVPEMmske2CQM");
 
   const citySearch = (citySearch) => {
+    console.log("citySearch=" + citySearch);
+
     if (citySearch && citySearch.length > 2) {
       const params = { q: citySearch, units: units };
 
@@ -25,19 +27,28 @@ const Weather = ({ apiKey }) => {
   };
 
   const coordinatesSearchSuccess = (position) => {
-    const params = { lat: position.coords.latitude, lon: position.coords.longitude, units: units };
+    const params = {
+      lat: position.coords.latitude,
+      lon: position.coords.longitude,
+      units: units,
+    };
     doSearch(params);
+  };
+
+  function coordinatesSearchError(error) {
+    setErrorMessage(error.message);
   }
 
-  function coordinatesSearchError(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-  
   const coordinatesSearch = () => {
-    navigator.geolocation.getCurrentPosition(coordinatesSearchSuccess, coordinatesSearchError);
+    navigator.geolocation.getCurrentPosition(
+      coordinatesSearchSuccess,
+      coordinatesSearchError
+    );
   };
 
   const doSearch = (params) => {
+    setErrorMessage("");
+
     const weatherService = new WeatherService(units, apiKey, "en");
 
     let promise = weatherService.getForecast(params);
@@ -53,7 +64,11 @@ const Weather = ({ apiKey }) => {
 
     promise.catch((error) => {
       if (error.response.status === 401) {
-        setError401(true);
+        setErrorMessage("API key not valid");
+      } else if (error.response.status === 404) {
+        setErrorMessage("Location not found");
+      } else {
+        setErrorMessage("An error has occured");
       }
 
       setCity(null);
@@ -72,7 +87,7 @@ const Weather = ({ apiKey }) => {
         googleKey={googleKey}
       ></SearchBar>
 
-      {error401 && <ErrorMessages />}
+      {errorMessage && <ErrorMessage errorMessage={errorMessage} />}
 
       {city && <City city={city} />}
 

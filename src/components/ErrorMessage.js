@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Collapse from "@material-ui/core/Collapse";
 import Alert from "@material-ui/lab/Alert";
 
-const ErrorMessages = () => {
+const ErrorMessage = (props) => {
   const [open, setOpen] = React.useState(true);
 
   return (
@@ -16,7 +16,7 @@ const ErrorMessages = () => {
               setOpen(false);
             }}
           >
-            Please specify a valid API key
+            {props.errorMessage}
           </Alert>
         </Collapse>
       </Grid>
@@ -24,4 +24,4 @@ const ErrorMessages = () => {
   );
 };
 
-export default ErrorMessages;
+export default ErrorMessage;
