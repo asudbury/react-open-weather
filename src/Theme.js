@@ -1,4 +1,5 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import Image from './assets/img/background.jpg'; 
 
 let Theme = createMuiTheme({
   palette: {
@@ -14,6 +15,14 @@ let Theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        body: {
+          backgroundImage:
+          `url(${Image})`,
+        }
+      }
+    },
     MuiPaper: {
       root: {
         backgroundColor: "transparent",
